@@ -1,0 +1,33 @@
+name: mise CI
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        description: 'ランナー指定。JSON 文字列で渡す（例: ''"ubuntu-latest"'' / ''["self-hosted","Linux","ARM64"]''）'
+        type: string
+        default: '"ubuntu-latest"'
+      timeout-minutes:
+        description: 'ジョブのタイムアウト（分）'
+        type: number
+        default: 15
+
+# group の mise-ci- 接頭辞は必須。呼ばれる側の github.workflow は caller の
+# workflow 名に解決されるため、接頭辞が無いと caller が同じ group 式を書いた
+# 瞬間に caller と callee が同一グループに入り、caller が自分自身をキャンセルする。
+concurrency:
+  group: mise-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  ci:
+    runs-on: ${{ fromJSON(inputs.runner) }}
+    timeout-minutes: ${{ inputs.timeout-minutes }}
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: jdx/mise-action@v4
+      - run: mise run fmt:check
+      - run: mise run lint
+      - run: mise run test
