@@ -26,6 +26,8 @@ gh repo create kou256/<name> --template kou256/template --private --clone
 
 # 2. ラベルを投入（テンプレートはラベルをコピーしないため必須）
 gh label clone kou256/template --repo kou256/<name> --force
+# clone はラベルを削除しないため、GitHub 既定の enhancement が feature と併存する。消しておく
+gh label delete enhancement --repo kou256/<name> --yes
 
 # 3. mise.toml を埋める
 #    [tools] に Go / Node / pnpm などのバージョンを固定し、
