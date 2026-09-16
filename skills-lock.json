@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "close-unneeded-pr": {
+      "source": "kou256/skills",
+      "sourceType": "github",
+      "skillPath": "close-unneeded-pr/SKILL.md",
+      "computedHash": "b8b0a4f391525b6249e3177974f74f50e528fc7ccb399b4d43da472a6839c5f2"
+    },
+    "commit-staged-changes": {
+      "source": "kou256/skills",
+      "sourceType": "github",
+      "skillPath": "commit-staged-changes/SKILL.md",
+      "computedHash": "73903d1246586a45712cfc0721cd81cc607add18e5504bd29bc5586c2d478e2e"
+    },
+    "fix-review-comment": {
+      "source": "kou256/skills",
+      "sourceType": "github",
+      "skillPath": "fix-review-comment/SKILL.md",
+      "computedHash": "76fe84026b3ed2327c921fa234fe712c98437c67a9a44ad703ca28bba2e37599"
+    },
+    "pr-overview-updater": {
+      "source": "kou256/skills",
+      "sourceType": "github",
+      "skillPath": "pr-overview-updater/SKILL.md",
+      "computedHash": "30f74727153158e7a53ff7780c55fa6a5670d067b304889a51d2a01762a2216f"
+    }
+  }
+}
