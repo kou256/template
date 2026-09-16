@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# エディタ
+.idea/
+*.swp
+
+# Claude Code
+**/.claude/settings.local.json
+.claude/worktrees/
