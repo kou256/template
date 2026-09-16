@@ -1,0 +1,18 @@
+# 各リポジトリで必要なツールを [tools] に追加し、[tasks] の run を実際のコマンドに
+# 置き換えてください。[tools] を空のままにすると CI がランナーのプリインストール環境に
+# 暗黙に依存するため、Go / Node / pnpm などのバージョンは必ずここで固定します。
+[tools]
+
+# run を空文字にすると mise が黙って成功扱いし、CI が何も検証せずグリーンになります。
+# 未定義のまま放置されたら落ちるよう、意図的に exit 1 しています。
+[tasks.lint]
+run = "echo 'lint タスクが未定義です' && exit 1"
+
+[tasks.fmt]
+run = "echo 'fmt タスクが未定義です' && exit 1"
+
+[tasks.'fmt:check']
+run = "echo 'fmt:check タスクが未定義です' && exit 1"
+
+[tasks.test]
+run = "echo 'test タスクが未定義です' && exit 1"

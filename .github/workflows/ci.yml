@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    # template リポジトリ自身では走らせない。mise.toml が雛形のままで
+    # タスクが exit 1 するため、この if が無いと template の CI が常に赤くなる。
+    # コピー先ではこの条件が真になるのでそのまま動く。
+    if: github.repository != 'kou256/template'
+    uses: kou256/template/.github/workflows/mise-ci.yml@v1
