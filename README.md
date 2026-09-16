@@ -11,7 +11,9 @@ GitHub のテンプレートリポジトリ。新規リポジトリの初期セ�
 | `mise.toml` | ツールとタスクの雛形。`lint` / `fmt` / `fmt:check` / `test` の4タスク |
 | `renovate.json` | 共有プリセット（`kou256/.github`）への参照 |
 | `AGENTS.md` / `CLAUDE.md` | エージェント向けの規約。規約本文は持たずスキルに委譲する |
-| `.claude/skills/` | GitHub 運用のスキル4種 |
+| `.agents/skills/` | GitHub 運用のスキル4種の実体 |
+| `.claude/skills/` | 上記への symlink（Claude Code が読む場所） |
+| `skills-lock.json` | スキルのバージョン固定。`npx skills` が管理する |
 | `.gitignore` / `.editorconfig` | 言語非依存の共通設定 |
 
 PR テンプレートと Issue テンプレートはこのリポジトリには**ありません**。`kou256/.github` に置いてあり、全リポジトリへ自動で適用されます。
@@ -30,6 +32,21 @@ gh label clone kou256/template --repo kou256/<name> --force
 #    [tasks] の run を実際のコマンドに置き換える
 
 # 4. Renovate を有効化（GitHub App をこのリポジトリに追加）
+```
+
+## スキルの管理
+
+スキルは [`skills`](https://github.com/vercel-labs/skills) CLI で管理します。実体は `.agents/skills/` にあり、`.claude/skills/` はそこへの symlink です。
+
+```bash
+# kou256/skills の更新に追従する
+npx skills update
+
+# skills-lock.json から復元する（clone 直後など）
+npx skills experimental_install
+
+# スキルを追加する
+npx skills add kou256/skills -a claude-code -a universal -s <skill-name>
 ```
 
 ## CI の前提
