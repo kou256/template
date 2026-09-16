@@ -11,6 +11,8 @@ run = "echo 'lint タスクが未定義です' && exit 1"
 [tasks.fmt]
 run = "echo 'fmt タスクが未定義です' && exit 1"
 
+# fmt:check は書き込みをしないこと。CI が実行するため、ここでファイルを書き換えると
+# 差分が残ったまま後続が走る。整形して書き込むのは fmt の役目。
 [tasks.'fmt:check']
 run = "echo 'fmt:check タスクが未定義です' && exit 1"
 

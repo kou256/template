@@ -57,6 +57,9 @@ npx skills add kou256/skills -a claude-code -a universal -s <skill-name>
 
 - `mise.toml` があること
 - `lint` / `fmt:check` / `test` の3タスクが定義されていること
+- `fmt:check` は**書き込みをしない**こと（`golangci-lint fmt --diff` のように差分の検査だけを行う）
+
+`lint` ジョブが `fmt:check` → `lint` を、`test` ジョブが `test` を実行します。2ジョブは並列に走るので、片方が落ちてももう片方の結果を確認できます。
 
 self-hosted ランナーを使う場合は `runner` を JSON 文字列で渡します。
 
